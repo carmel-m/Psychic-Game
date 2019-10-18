@@ -14,8 +14,9 @@ document.getElementById("your-guesses").textContent = userGuesses;
 
 // generate random letter 
 var randomLetter = letterArray[Math.floor(Math.random() * letterArray.length)];
+console.log(randomLetter);
 
-// reset function to start game and to reset after one of the ending conditions (win/lose)
+// reset function to start game and to reset after one of the ending conditions (win/lose) - I think this might be in the wrong spot
 function reset() {
     console.log(randomLetter);
     guessesLeft = 9;
@@ -23,10 +24,10 @@ function reset() {
 }
 
 // generate random letter (this is duplicate to the var in the reset function)
-// var randomLetter = letterArray[Math.floor(Math.random() * letterArray.length)];
+// randomLetter = letterArray[Math.floor(Math.random() * letterArray.length)];
 // console.log(randomLetter);
 
-reset();
+// reset();
 
 // take user input (typing a letter)
 document.onkeyup = function (event) {
@@ -36,9 +37,9 @@ document.onkeyup = function (event) {
 
     // if statement checking if letter matches and updating win tally
     if (userInput === randomLetter) {
-        reset();
         wins++;
         document.getElementById("win-tally").textContent = wins;
+        reset();
 
     } else {
         userGuesses.push(userInput);
@@ -54,18 +55,6 @@ document.onkeyup = function (event) {
 }
 
 // reset();
-
-
-// if (guessesLeft < 1) {
-//     // losses goes up by one.
-//     losses++;
-//     // and guesses left goes back to 9.
-//     // guessesLeft = 9;
-//     reset();
-//     // and the computer makes a new guess.
-//     // computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-//     // AND the letter being displayed under "youre guesses" is reset.
-//     lettersGuessed.textContent = (" ");
 
 
 // when guessesLeft reaches 0
