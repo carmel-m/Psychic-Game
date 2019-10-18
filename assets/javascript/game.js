@@ -18,9 +18,10 @@ console.log(randomLetter);
 
 // reset function to start game and to reset after one of the ending conditions (win/lose) - I think this might be in the wrong spot
 function reset() {
-    console.log(randomLetter);
     guessesLeft = 9;
     userGuesses = [];
+    randomLetter = letterArray[Math.floor(Math.random() * letterArray.length)];
+    console.log(randomLetter);
 }
 
 // generate random letter (this is duplicate to the var in the reset function)
@@ -31,6 +32,7 @@ function reset() {
 
 // take user input (typing a letter)
 document.onkeyup = function (event) {
+    console.log(losses);
 
     //determine which key was pressed
     var userInput = event.key;
@@ -42,15 +44,21 @@ document.onkeyup = function (event) {
         reset();
 
     } else {
+        // if  { //check for letter already in array - only push if not in array (NEED TO ADD3)
         userGuesses.push(userInput);
+        // }
+
         guessesLeft--;
         document.getElementById("guesses-left").textContent = guessesLeft;
         document.getElementById("your-guesses").textContent = userGuesses;
 
     }
     if (guessesLeft < 1) {
-        reset();
         losses++;
+        console.log(losses);
+        document.getElementById("loss-tally").textContent = losses;
+        reset();
+        
     }
 }
 
